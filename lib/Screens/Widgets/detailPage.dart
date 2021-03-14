@@ -102,28 +102,29 @@ class _DetailPageState extends State<DetailPage> {
                 style: editText),
           ),
           Container(
-              margin: EdgeInsets.all(10),
-              height: MediaQuery.of(context).size.height / 1.7,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  border: Border.all(
-                    color: Colors.green,
-                    width: 2,
-                  )),
-              padding: EdgeInsets.symmetric(
-                horizontal: 20,
+            margin: EdgeInsets.all(10),
+            height: MediaQuery.of(context).size.height / 1.7,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                  color: Colors.green,
+                  width: 2,
+                )),
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+            ),
+            width: double.infinity,
+            child: TextFormField(
+              keyboardType: TextInputType.multiline,
+              maxLines: null,
+              controller: description,
+              decoration: InputDecoration(
+                hintText: 'Description',
+                border: InputBorder.none,
               ),
-              width: double.infinity,
-              child: TextFormField(
-                keyboardType: TextInputType.multiline,
-                maxLines: null,
-                controller: description,
-                decoration: InputDecoration(
-                  hintText: 'Description',
-                  border: InputBorder.none,
-                ),
-                style: editText,
-              ),),
+              style: editText,
+            ),
+          ),
         ],
       ),
     );
@@ -139,10 +140,7 @@ class _DetailPageState extends State<DetailPage> {
       width: double.infinity,
       child: ListView(
         children: [
-          Text(
-            'Title ',
-            style:displayText
-          ),
+          Text('Title ', style: displayText),
           Container(
             width: double.infinity,
             margin: EdgeInsets.only(
@@ -179,7 +177,9 @@ class _DetailPageState extends State<DetailPage> {
               ),
               child: Text(
                 widget.detailView.data()['description'],
-                style: displayText.copyWith(fontSize: 23,),
+                style: editText.copyWith(
+                  fontSize: 23,
+                ),
                 maxLines: null,
                 textAlign: TextAlign.left,
               ),
