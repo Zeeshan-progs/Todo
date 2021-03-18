@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:notes/const/const.dart';
@@ -10,6 +12,25 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final reference = FirebaseFirestore.instance.collection('note');
+  Color color = Colors.green;
+  Random random = Random();
+  Color changeColor() {
+    return color = Color.fromRGBO(
+      random.nextInt(256),
+      random.nextInt(256),
+      random.nextInt(256),
+      1,
+    );
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    setState(() {
+      color = changeColor();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -55,7 +76,7 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           },
-          // custom list style 
+          // custom list style
           child: Container(
             padding: EdgeInsets.symmetric(vertical: 10),
             margin: EdgeInsets.all(15),
@@ -68,7 +89,7 @@ class _HomePageState extends State<HomePage> {
                 Container(
                   width: 5,
                   height: double.infinity,
-                  color: Colors.green,
+                  color: color,
                 ),
                 Expanded(
                   flex: 1,
@@ -76,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                     padding: const EdgeInsets.all(15.0),
                     child: Text(
                       snapshot.data.docs[index].data()['title'].toUpperCase(),
-                      style:titleStyle,
+                      style: titleStyle,
                       maxLines: 1,
                     ),
                   ),

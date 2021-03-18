@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:notes/Screens/Widgets/HomePage.dart';
-import 'package:notes/screens/widgets/AddPage.dart';
-import 'package:notes/screens/widgets/DeletedPage.dart';
+import 'package:notes/Widgets/HomePage.dart';
+import 'package:notes/widgets/AddPage.dart';
+import 'package:notes/widgets/DeletedPage.dart';
 
 bool isClick = false;
 

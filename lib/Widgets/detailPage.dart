@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:notes/Screens/Home.dart';
+import 'package:notes/const/const.dart';
 
-import '../../const/const.dart';
 
 // ignore: must_be_immutable
 class DetailPage extends StatefulWidget {

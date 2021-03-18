@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:notes/const/const.dart';
 
-import '../Home.dart';
 
-TextEditingController title = TextEditingController();
-TextEditingController description = TextEditingController();
+
 
 class AddNote extends StatefulWidget {
   @override
@@ -20,16 +19,13 @@ class _AddNoteState extends State<AddNote> {
       'title': title.text,
       'description': description.text,
     }).whenComplete(
-      () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => Home(),
+      () => ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Fiels Added'),
         ),
       ),
-    );
+     );
   }
-
-  
 
   @override
   Widget build(BuildContext context) {
