@@ -11,7 +11,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  final reference = FirebaseFirestore.instance.collection('note');
   Color color = Colors.green;
   Random random = Random();
   Color changeColor() {
@@ -38,9 +37,10 @@ class _HomePageState extends State<HomePage> {
       width: double.infinity,
       padding: EdgeInsets.all(5),
       child: StreamBuilder<QuerySnapshot>(
-          stream: reference.snapshots(includeMetadataChanges: true),
+          stream: reference.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
+              print('=========   ERROR ========');
               return Center(
                 child: CircularProgressIndicator(
                   backgroundColor: Colors.transparent,
@@ -48,6 +48,8 @@ class _HomePageState extends State<HomePage> {
               );
             }
             if (!snapshot.hasData) {
+              print('=========   Data Not Found  ========');
+
               return Center(
                 child: Text('No data '),
               );
@@ -95,10 +97,13 @@ class _HomePageState extends State<HomePage> {
                   flex: 1,
                   child: Padding(
                     padding: const EdgeInsets.all(15.0),
-                    child: Text(
-                      snapshot.data.docs[index].data()['title'].toUpperCase(),
-                      style: titleStyle,
-                      maxLines: 1,
+                    child: FittedBox(
+                      fit: BoxFit.contain,
+                      child: Text(
+                        snapshot.data.docs[index].data()['title'].toUpperCase(),
+                        style: titleStyle,
+                        maxLines: null,
+                      ),
                     ),
                   ),
                 ),

@@ -28,25 +28,21 @@ class _HomeState extends State<Home> {
     );
   }
 
-
 // App bar
   AppBar buildAppBar() {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor: Colors.deepPurple,
       elevation: 0,
       title: Text(
         'To Do ',
         style: TextStyle(
           fontSize: 20,
-          color: Colors.deepPurple,
+          color: Colors.white,
         ),
       ),
     );
   }
 
-
-
-  
 // bottom Navigation Bar
   BottomNavigationBar buildBottomNavigationBar() {
     return BottomNavigationBar(

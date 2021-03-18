@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:notes/Screens/Home.dart';
 import 'package:notes/const/const.dart';
-
-
-
 
 class AddNote extends StatefulWidget {
   @override
@@ -12,20 +9,32 @@ class AddNote extends StatefulWidget {
 }
 
 class _AddNoteState extends State<AddNote> {
-  CollectionReference reference = FirebaseFirestore.instance.collection('note');
-
   void addNote() {
     reference.add({
       'title': title.text,
       'description': description.text,
-    }).whenComplete(
-      () => ScaffoldMessenger.of(context).showSnackBar(
+    }).whenComplete(() {
+      ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Fiels Added'),
         ),
-      ),
-     );
+      );
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => Home(),
+        ),
+      );
+    });
   }
+@override
+void initState() { 
+  super.initState();
+  
+ title = TextEditingController(text: '');
+description = TextEditingController(text: '');
+}
+  
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +52,8 @@ class _AddNoteState extends State<AddNote> {
             padding: EdgeInsets.all(20),
             width: double.infinity,
             child: TextFormField(
+              keyboardAppearance: Brightness.dark,
+              keyboardType: TextInputType.text,
               controller: title,
               decoration: InputDecoration(
                 fillColor: Colors.white,
